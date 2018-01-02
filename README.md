@@ -27,9 +27,9 @@
 ### Measurements from Radar and Lidar
 All the raw data received from the sensors use the world coordinates.
 
-* The measurement data from Radar uses polar coordinate system, which means, the first measurement is the distance to the original point, and the second measurement is the angle.
+* The measurement data from Radar uses the polar coordinate system, which means, the first measurement is the distance to the original point, and the second measurement is the angle.
 
-* The data of measurement from Lidar uses 2d cartesian coordinate system.
+* The data of measurement from Lidar uses the 2d cartesian coordinate system.
 
 ### Kalman Filter
 
@@ -51,7 +51,7 @@ Following diagram is for the linear Kalman filter. (Unscented Kalman Filter is n
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/gen_sigma_ps.png" alt="generate sigma points" width="488">
 
-* The first term generates only one sigma point, which is the mean point (center). The second term and the third term can generate two sets of sigma points.
+* The first term generates only one sigma point, which is the mean point (center). The second term and the third term can create two sets of sigma points.
 
 * `lambda` is normally be chosen as `3 - n_x`.
 
@@ -83,9 +83,9 @@ In the prediction of the sigma points the non-linearity occurs. The functions fo
 
 #### UKF Augmentation
 
-The two noises, which are longitudinal and yaw acceleration noises, are incorperated in the states vector and covariance matrix.
+The two noises, which are longitudinal and yaw acceleration noises, are incorporated in the states vector and covariance matrix.
 
-The two noises are independent with each other. The covariance matrix `Q` of the noises can be calculated as below:
+The two noises are independent of each other. The covariance matrix `Q` of the noises can be calculated as below:
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/cov_max_noise.png" alt="covariance matrix of the noises" width="233">
 
@@ -105,17 +105,17 @@ The new states and the new covariance matrix is shown below:
 
 #### 1. Predict Measurement
 
-The predicted measurements and the calculated corresponding matrix is used to update the Kalman filter, in order to let the filter more sure about the localization of the vehicle.
+The predicted measurements and the calculated corresponding matrix is used to update the Kalman filter, to let the filter be more sure about the localization of the vehicle.
 
 ##### Predict Radar Measurement
 
-The predicted state is should be changed into the measurement vector:
+The predicted state should be changed into the measurement vector:
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/radar_1.png" alt="state->measurement" width="188">
 
 The equations for the changing is shown below:
 
-<img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/radar_2.png" alt="measurement mean/covariance" width="388">
+<img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/radar_2.png" alt="measurement mean/covariance" width="488">
 
 ##### Predict Lidar Measurement
 
@@ -142,7 +142,7 @@ We used **Chi-squared Distribution** to judge how well the prediction is. The ta
 
 <img src="https://filedn.com/lUE8ye7yWpzFOF1OFLVsPau/Github/UKF/chisquredDistr.png" alt="ChisquaredDistr" width="666">
 
-#### Explanation of the table with an simple example
+#### Explanation of the table with a simple example
 
 1. We have three values in the measurement vector, which means that the degree of dimensions is `3`.
 
@@ -150,7 +150,7 @@ We used **Chi-squared Distribution** to judge how well the prediction is. The ta
 
 3. The corresponding χ2 value is `6.25`.
 
-4. This means that in this case `10%` of all the NIS values should be bigger than `6.25`. 
+4. This means that in this case, `10%` of all the NIS values should be bigger than `6.25`. 
 
 5. For example, in this case, when `50%` of all the NIS values are bigger than `6.25`. This means that we underestimate the uncertainty (noise) of the system.
 
@@ -172,6 +172,6 @@ The video is uploaded on the Youtube. [[link]](https://www.youtube.com/watch?v=v
 
 2. [Chi-squared distribution (Wikipedia)](https://en.wikipedia.org/wiki/Chi-squared_distribution)
 
-3. The Unscented Kalman Filter for Nonlinear Estimation, Eric A. Wan and Rudolph van der Merwe, Oregon Graduate Institute of Science & Technology
+3. The Unscented Kalman Filter for Nonlinear Estimation, Eric A. Wan, and Rudolph van der Merwe, Oregon Graduate Institute of Science & Technology
 
 4. [Kalman Filter (Wikipedia)](https://en.wikipedia.org/wiki/Kalman_filter)
